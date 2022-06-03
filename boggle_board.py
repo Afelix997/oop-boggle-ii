@@ -34,9 +34,33 @@ class BoggleBoard:
                         for col in range(len(self.board[row])):
                               if self.dice_list[count] == 'Q':
                                     self.dice_list[count]='Qu'
-                        self.board[row][col]= self.dice_list[count]
-                        count+=1
+                              self.board[row][col]= self.dice_list[count]
+                              count+=1               
             return print_board(self.board)
-      
-      def include_word(self):
-            pass
+
+      def include_word(self, word):
+            count=0
+            word_list=list(word.upper())
+            while count<4:
+                  horz= [self.board[count][0],self.board[count][1],self.board[count][2],self.board[count][3]]
+                  vert= [self.board[0][count],self.board[1][count],self.board[2][count],self.board[3][count]]
+                  if vert== word_list or vert.reverse()== word_list or horz== word_list or horz.reverse() == word_list:
+                        return True
+                  count+=1
+            diag_1=[self.board[0][0],self.board[1][1],self.board[2][2],self.board[3][3]]
+            diag_2=[self.board[0][3],self.board[1][2],self.board[2][1],self.board[3][0]]
+            print(word_list)
+            print(diag_1)
+            if word_list==diag_1 or word_list==diag_1.reverse()or word_list== diag_2.reverse()or word_list== diag_1:
+                        return True
+            return print(False)
+
+                        
+
+
+board = BoggleBoard()
+
+board.shake()
+
+board.include_word("EeoA")
+
